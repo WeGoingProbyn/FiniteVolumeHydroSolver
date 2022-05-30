@@ -8,7 +8,6 @@
 #include "Util.h"
 #include "Field.h"
 #include "SystemVariables.h"
-#include "TemporalVariables.h"
 
 #ifndef CONTAINER_H
 #define CONTAINER_H
@@ -16,8 +15,8 @@
 class Container {
 private:
 
-	int di, dj, SimSteps;
-	double dt, BoxScale, TrueTime;
+	int  SimSteps;
+	double dt, di, dj, BoxScale, TrueTime;
 
 	// TODO: Consider compressible case:
 	//		 allow energy field to influence mechanical fields
@@ -27,24 +26,29 @@ private:
 	Field Pressure;  //    density can be constant throughout the field.
 	Field MomentumI;
 	Field MomentumJ;
+	Field InterimMomentumI;
+	Field InterimMomentumJ;
 	Field DynamicViscosity; // <= a consequence of variable density field.
 	SystemVariables SysVars;
 public:
 	Container();
+	~Container();
 
-	Field GetDensityField();
-	Field GetPressureField();
-	Field GetMomentumFieldI();
-	Field GetMomentumFieldJ();
-	Field GetDynamicViscosityField();
-	SystemVariables GetSysVars();
+	Field* GetDensityField();
+	Field* GetPressureField();
+	Field* GetMomentumFieldI();
+	Field* GetMomentumFieldJ();
+	Field* GetInterimMomentumFieldI();
+	Field* GetInterimMomentumFieldJ();
+	Field* GetDynamicViscosityField();
+	SystemVariables* GetSysVars();
 
 	double GetDt();
 	int GetSimSteps();
-	int GetDifferenceI();
-	int GetDifferenceJ();
 	double GetBoxScale();
 	double GetTrueTime();
+	double GetDifferenceI();
+	double GetDifferenceJ();
 
 	void SetDt();
 	void SetBoxScale();

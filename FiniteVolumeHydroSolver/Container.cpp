@@ -7,27 +7,51 @@ Container::Container() :
 	Pressure = Field();
 	MomentumI = Field();
 	MomentumJ = Field();
+	InterimMomentumI = Field();
+	InterimMomentumJ = Field();
 	DynamicViscosity = Field();
 	SysVars = SystemVariables();
+
+	Density.AllocateMemory();
+	Pressure.AllocateMemory();
+	MomentumI.AllocateMemory();
+	MomentumJ.AllocateMemory();
+	InterimMomentumI.AllocateMemory();
+	InterimMomentumJ.AllocateMemory();
+	DynamicViscosity.AllocateMemory();
 }
 
-Field Container::GetDensityField() { return Density; }
+Container::~Container() {
+	Density.DestroyMemory();
+	Pressure.DestroyMemory();
+	MomentumI.DestroyMemory();
+	MomentumJ.DestroyMemory();
+	InterimMomentumI.DestroyMemory();
+	InterimMomentumJ.DestroyMemory();
+	DynamicViscosity.DestroyMemory();
+}
 
-Field Container::GetPressureField() { return Pressure; }
+Field* Container::GetDensityField() { return &Density; }
 
-Field Container::GetMomentumFieldI() { return MomentumI; }
+Field* Container::GetPressureField() { return &Pressure; }
 
-Field Container::GetMomentumFieldJ() { return MomentumJ; }
+Field* Container::GetMomentumFieldI() { return &MomentumI; }
 
-Field Container::GetDynamicViscosityField() { return DynamicViscosity; }
+Field* Container::GetMomentumFieldJ() { return &MomentumJ; }
 
-SystemVariables Container::GetSysVars() { return SysVars; }
+Field* Container::GetInterimMomentumFieldI() { return &InterimMomentumI; }
+
+Field* Container::GetInterimMomentumFieldJ() { return &InterimMomentumJ; }
+
+Field* Container::GetDynamicViscosityField() { return &DynamicViscosity; }
+
+SystemVariables* Container::GetSysVars() { return &SysVars; }
 
 int Container::GetSimSteps() { return SimSteps; }
 
-int Container::GetDifferenceI() { return di; }
+double Container::GetDifferenceI() { return di; }
 
-int Container::GetDifferenceJ() { return dj; }
+double Container::GetDifferenceJ() { return dj; }
 
 double Container::GetBoxScale() { return BoxScale; }
 
@@ -58,9 +82,9 @@ void Container::SetBoxScale() {
 void Container::SetTrueTime() { TrueTime = BoxScale * SysVars.GetMaxTime();}
 
 void Container::SetDt() {
-	std::vector<int> tmp = { di, dj };
+	std::vector<double> tmp = { di, dj };
 	std::vector<double> Velocities = { SysVars.GetDirchletVelocity().x, SysVars.GetDirchletVelocity().y, SysVars.GetDirchletVelocity().v, SysVars.GetDirchletVelocity().w };
 	dt = SysVars.GetCfl() * *std::min_element(std::begin(tmp), std::end(tmp)) / *std::max_element(std::begin(Velocities), std::end(Velocities));
 }
 
-void Container::SetSimSteps() { SimSteps = TrueTime / dt; dt = TrueTime / (int)SimSteps; }
+void Container::SetSimSteps() { SimSteps = (int)(TrueTime / dt); dt = TrueTime / SimSteps; }

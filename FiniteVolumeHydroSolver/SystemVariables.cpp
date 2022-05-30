@@ -1,24 +1,32 @@
 #include "SystemVariables.h"
 
 SystemVariables::SystemVariables() :
-	nx(0), ny(0), Re(0.0), Tolerance(0.0), DirchletVelocity(vec4()) {}
+	p_nx(0), p_ny(0), p_Re(0.0), p_Cfl(0.0), p_MaxTime(0.0), p_Tolerance(0.0), p_DirchletVelocity(vec4()) {}
 
-int SystemVariables::GetSizeX() { return nx; }
+int SystemVariables::GetSizeX() { return p_nx; }
 
-int SystemVariables::GetSizeY() { return ny; }
+int SystemVariables::GetSizeY() { return p_ny; }
 
-double SystemVariables::GetRe() { return Re; }
+double SystemVariables::GetRe() { return p_Re; }
 
-double SystemVariables::GetTolerance() { return Tolerance; }
+double SystemVariables::GetCfl() { return p_Cfl; }
 
-vec4 SystemVariables::GetDirchletVelocity() { return DirchletVelocity; }
+double SystemVariables::GetMaxTime() { return p_MaxTime; }
 
-void SystemVariables::SetSizeX(int& nx) { nx = nx; }
+double SystemVariables::GetTolerance() { return p_Tolerance; }
 
-void SystemVariables::SetSizeY(int& ny) { ny = ny; }
+vec4 SystemVariables::GetDirchletVelocity() { return p_DirchletVelocity; }
 
-void SystemVariables::SetRe(double& Re) { Re = Re; }
+void SystemVariables::SetSizeX(int& nx) { p_nx = nx; }
 
-void SystemVariables::SetTolerance(double& Tolerance) { Tolerance = Tolerance; }
+void SystemVariables::SetSizeY(int& ny) { p_ny = ny; }
 
-void SystemVariables::SetDirchletVelocity(vec4& DirchletVelocity) { DirchletVelocity = DirchletVelocity; }
+void SystemVariables::SetRe(double& Re) { p_Re = Re; }
+
+void SystemVariables::SetCfl(double& Cfl) { p_Cfl = Cfl; }
+
+void SystemVariables::SetMaxTime(double& MaxTime) { p_MaxTime = MaxTime; }
+
+void SystemVariables::SetTolerance(double& Tolerance) { p_Tolerance = Tolerance; }
+
+void SystemVariables::SetDirchletVelocity(vec4& DirchletVelocity) { p_DirchletVelocity = DirchletVelocity; }

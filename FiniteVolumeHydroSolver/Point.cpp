@@ -1,15 +1,17 @@
 #include "Point.h"
 
-Point::Point() : i(-1), j(-1), var(0.0) {}
+#include <iostream>
 
-int Point::GetIndexI() { return i; }
+Point::Point() : p_i(-1), p_j(-1), p_var(0.0) {}
 
-int Point::GetIndexJ() { return j; }
+int Point::GetIndexI() { return p_i; }
 
-double Point::GetVar() { return var; }
+int Point::GetIndexJ() { return p_j; }
 
-void Point::SetIndexI(int &i) { i = i; }
+double Point::GetVar() { return p_var; }
 
-void Point::SetIndexJ(int &j) { j = j; }
+void Point::SetIndexI(int& i) { p_i = i; }
 
-void Point::SetVar(double &var) { var = var; }
+void Point::SetIndexJ(int& j) { p_j = j; }
+
+void Point::SetVar(double& var) { p_var = var; }

@@ -1,42 +1,49 @@
 #include "Field.h"
 
-Field::Field() : ni(0), nj(0), arr(nullptr) {}
+#include <iostream>
 
-int Field::GetTotal() { return ni * nj; }
+Field::Field() : p_ni(0), p_nj(0), arr(nullptr) {}
 
-int Field::GetDimensionSizeI() { return ni; }
+void Field::AllocateMemory() { arr = new Point[MaxItems]; }
 
-int Field::GetDimensionSizeJ() { return nj; }
+void Field::DestroyMemory() { delete arr; }
 
-void Field::SetDimensionSizeI(int &ni) { ni = ni; }
+int Field::GetTotal() { return p_ni * p_nj; }
 
-void Field::SetDimensionSizeJ(int &nj) { nj = nj; }
+int Field::GetDimensionSizeI() { return p_ni; }
 
-void Field::SetPoint(Point &instance, int &index) { arr[index] = instance; }
+int Field::GetDimensionSizeJ() { return p_nj; }
+
+void Field::SetDimensionSizeI(int& ni) { p_ni = ni; }
+
+void Field::SetDimensionSizeJ(int& nj) { p_nj = nj; }
+
+void Field::SetPoint(Point& instance, int& index) { arr[index] = instance; }
 
 void Field::BuildField() {
+	int i, j;
 	for (int index = 0; index < GetTotal(); index++) {
 		arr[index] = Point();
 		if (index > 0) {
-			if (index / ni > 1) {
-				int j = index % nj;
-				arr[index].SetIndexJ(j);
+			if (index / p_ni < 1) {
+				i = 0;
+				j = index % p_nj;
 			}
 			else {
-				int i = index / ni;
-				int j = index % nj;
-				arr[index].SetIndexI(i);
-				arr[index].SetIndexJ(j);
+				i = index / p_ni;
+				j = index % p_nj;
 			}
 		}
+		else {
+			i = 0;
+			j = 0;
+		}
+		arr[index].SetIndexI(i);
+		arr[index].SetIndexJ(j);
 	}
 }
 
-Point Field::GetPoint(int &i, int &j) {
-	for (int index = 0; index < GetTotal(); index++) {
-		if (index / ni == arr[index].GetIndexI() && index % nj == arr[index].GetIndexJ()) {
-			return arr[index];
-		}
-	}
-	return Point();
+Point* Field::GetPoint(int& i, int& j) {
+	int index = (i * p_ni) + j;
+	return &arr[index];
 }

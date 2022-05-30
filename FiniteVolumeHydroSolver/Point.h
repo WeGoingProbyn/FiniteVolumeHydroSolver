@@ -5,8 +5,8 @@
 
 class Point {
 private:
-	int i, j;
-	double var;
+	int p_i, p_j;
+	double p_var;
 
 public:
 	Point();
@@ -15,9 +15,9 @@ public:
 	int GetIndexJ();
 	double GetVar();
 
-	void SetIndexI(int &i);
-	void SetIndexJ(int &j);
-	void SetVar(double &var);
+	void SetIndexI(int& i);
+	void SetIndexJ(int& j);
+	void SetVar(double& var);
 };
 
 #endif

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #ifndef UTIL_H
 #define UTIL_H
 
