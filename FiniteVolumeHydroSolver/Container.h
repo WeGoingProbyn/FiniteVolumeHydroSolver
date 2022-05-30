@@ -1,5 +1,11 @@
 #pragma once
 
+#include <vector>
+#include <string>
+#include <cstdlib>
+#include <algorithm>
+
+#include "Util.h"
 #include "Field.h"
 #include "SystemVariables.h"
 #include "TemporalVariables.h"
@@ -9,9 +15,10 @@
 
 class Container {
 private:
-	double Nu, BoxScale;
+
 	int di, dj, SimSteps;
-	
+	double dt, BoxScale, TrueTime;
+
 	// TODO: Consider compressible case:
 	//		 allow energy field to influence mechanical fields
 
@@ -20,8 +27,8 @@ private:
 	Field Pressure;  //    density can be constant throughout the field.
 	Field MomentumI;
 	Field MomentumJ;
+	Field DynamicViscosity; // <= a consequence of variable density field.
 	SystemVariables SysVars;
-	TemporalVariables TimeVars;
 public:
 	Container();
 
@@ -29,18 +36,20 @@ public:
 	Field GetPressureField();
 	Field GetMomentumFieldI();
 	Field GetMomentumFieldJ();
+	Field GetDynamicViscosityField();
 	SystemVariables GetSysVars();
-	TemporalVariables GetTimeVars();
 
-	double GetNu();
+	double GetDt();
 	int GetSimSteps();
 	int GetDifferenceI();
 	int GetDifferenceJ();
 	double GetBoxScale();
+	double GetTrueTime();
 
-	void SetNu();
+	void SetDt();
 	void SetBoxScale();
 	void SetSimSteps();
+	void SetTrueTime();
 	void SetDifferenceI();
 	void SetDifferenceJ();
 };

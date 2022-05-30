@@ -148,7 +148,6 @@
     <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
-    <ClCompile Include="TemporalVariables.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Advection.h" />
@@ -159,7 +158,7 @@
     <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="SystemVariables.h" />
-    <ClInclude Include="TemporalVariables.h" />
+    <ClInclude Include="Util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

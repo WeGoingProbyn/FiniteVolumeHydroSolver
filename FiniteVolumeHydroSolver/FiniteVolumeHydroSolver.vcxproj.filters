@@ -39,9 +39,6 @@
     <ClCompile Include="Point.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TemporalVariables.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SystemVariables.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -68,10 +65,10 @@
     <ClInclude Include="Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TemporalVariables.h">
+    <ClInclude Include="SystemVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SystemVariables.h">
+    <ClInclude Include="Util.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
