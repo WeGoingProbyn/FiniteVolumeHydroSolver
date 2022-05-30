@@ -17,7 +17,7 @@ void Field::SetPoint(Point &instance, int &index) { arr[index] = instance; }
 void Field::BuildField() {
 	for (int index = 0; index < GetTotal(); index++) {
 		arr[index] = Point();
-		if (index != 0) {
+		if (index > 0) {
 			if (index / ni > 1) {
 				int j = index % nj;
 				arr[index].SetIndexJ(j);

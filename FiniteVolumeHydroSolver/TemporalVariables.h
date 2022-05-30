@@ -5,13 +5,15 @@
 
 class TemporalVariables {
 private:
-	double Dt, MaxTime, TrueTime;
+	double dt, Cfl, MaxTime, TrueTime;
 public:
 	double GetDt();
+	double GetCfl();
 	double GetMaxTime();
 	double GetTrueTime();
 
-	void SetDt(double &Dt);
+	void SetDt(double & dt);
+	void SetCfl(double& Cfl);
 	void SetMaxTime(double &MaxTime);
 	void SetTrueTime(double &TrueTime);
 };
