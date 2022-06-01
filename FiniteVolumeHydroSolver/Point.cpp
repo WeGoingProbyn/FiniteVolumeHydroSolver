@@ -3,6 +3,7 @@
 #include <iostream>
 
 Point::Point() : p_i(-1), p_j(-1), p_var(0.0) {}
+Point::Point(double& var) : p_i(-1), p_j(-1), p_var(var) {}
 
 int Point::GetIndexI() { return p_i; }
 

@@ -10,6 +10,7 @@ private:
 
 public:
 	Point();
+	Point(double& var);
 
 	int GetIndexI();
 	int GetIndexJ();

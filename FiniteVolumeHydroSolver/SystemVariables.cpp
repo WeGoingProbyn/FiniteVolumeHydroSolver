@@ -1,11 +1,11 @@
 #include "SystemVariables.h"
 
 SystemVariables::SystemVariables() :
-	p_nx(0), p_ny(0), p_Re(0.0), p_Cfl(0.0), p_MaxTime(0.0), p_Tolerance(0.0), p_DirchletVelocity(vec4()) {}
+	p_nx(0.0), p_ny(0.0), p_Re(0.0), p_Cfl(0.0), p_MaxTime(0.0), p_Tolerance(0.0), p_DirchletVelocity(vec4()) {}
 
-int SystemVariables::GetSizeX() { return p_nx; }
+double SystemVariables::GetSizeX() { return p_nx; }
 
-int SystemVariables::GetSizeY() { return p_ny; }
+double SystemVariables::GetSizeY() { return p_ny; }
 
 double SystemVariables::GetRe() { return p_Re; }
 
@@ -17,9 +17,9 @@ double SystemVariables::GetTolerance() { return p_Tolerance; }
 
 vec4 SystemVariables::GetDirchletVelocity() { return p_DirchletVelocity; }
 
-void SystemVariables::SetSizeX(int& nx) { p_nx = nx; }
+void SystemVariables::SetSizeX(double& nx) { p_nx = nx; }
 
-void SystemVariables::SetSizeY(int& ny) { p_ny = ny; }
+void SystemVariables::SetSizeY(double& ny) { p_ny = ny; }
 
 void SystemVariables::SetRe(double& Re) { p_Re = Re; }
 

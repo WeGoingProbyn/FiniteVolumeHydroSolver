@@ -145,7 +145,6 @@
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="LinearSolver.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="MemoryManager.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
   </ItemGroup>
@@ -155,7 +154,6 @@
     <ClInclude Include="Diffusion.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="LinearSolver.h" />
-    <ClInclude Include="MemoryManager.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="SystemVariables.h" />
     <ClInclude Include="Util.h" />

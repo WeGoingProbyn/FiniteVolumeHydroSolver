@@ -21,7 +21,7 @@ private:
 	// TODO: Consider compressible case:
 	//		 allow energy field to influence mechanical fields
 
-	//Field Energy;  // <= Not strictly needed but useful for expansion
+	Field Energy;    // <= Not strictly needed but useful for expansion
 	Field Density;   // <= to compressible flows. For incompressible flow,
 	Field Pressure;  //    density can be constant throughout the field.
 	Field MomentumI;
@@ -32,8 +32,9 @@ private:
 	SystemVariables SysVars;
 public:
 	Container();
-	~Container();
+	void DestroyPoints();
 
+	Field* GetEnergyField();
 	Field* GetDensityField();
 	Field* GetPressureField();
 	Field* GetMomentumFieldI();
@@ -42,6 +43,8 @@ public:
 	Field* GetInterimMomentumFieldJ();
 	Field* GetDynamicViscosityField();
 	SystemVariables* GetSysVars();
+
+	void BuildFields(int& ni, int& nj);
 
 	double GetDt();
 	int GetSimSteps();

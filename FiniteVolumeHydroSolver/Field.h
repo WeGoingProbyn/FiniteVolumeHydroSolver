@@ -23,9 +23,13 @@ public:
 	void SetDimensionSizeI(int& ni);
 	void SetDimensionSizeJ(int& nj);
 
-	void BuildField();
+	void BuildField(int& index, double& var);
 	void SetPoint(Point& instance, int& index);
+
 	Point* GetPoint(int& i, int& j);
+	Point* GetPoint(int& index);
+	
+	void FieldToConsoleOutput();
 };
 
 #endif
