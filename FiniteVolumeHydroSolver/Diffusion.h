@@ -17,7 +17,7 @@ public:
 	double GetDiffusionI(int& i, int& j, double& var);
 	double GetDiffusionJ(int& i, int& j, double& var);
 
-	void SetSystem(Container& Container);
+	void SetContainer(Container& Container);
 };
 
 #endif

@@ -13,17 +13,20 @@ private:
 	Container p_System;
 	Interpolation  p_Interp;
 	Advection p_Advection;
-	Diffusion p_diffusion;
+	Diffusion p_Diffusion;
 public:
 	Physics();
 
-	Container* GetSystem();
+	Advection* GetAdvection();
+	Diffusion* GetDiffusion();
 	Interpolation* GetInterpolation();
 
-	void SetSystem(Container& Container);
-	void SetInterpolation(Interpolation& Interp);
+	void SetContainer(Container& Container);
 	void SetAdvection(Advection& Advection);
 	void SetDiffusion(Diffusion& Diffusion);
+	void SetInterpolation(Interpolation& Interp);
+
+	void ComputeInterimMomentum();
 };
 
 #endif

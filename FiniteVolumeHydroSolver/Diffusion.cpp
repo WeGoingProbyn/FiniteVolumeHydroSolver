@@ -2,7 +2,7 @@
 
 Diffusion::Diffusion() : p_System(Container()) {}
 
-void Diffusion::SetSystem(Container& Container) { p_System = Container; }
+void Diffusion::SetContainer(Container& Container) { p_System = Container; }
 
 double Diffusion::GetDiffusionI(int& i, int& j) {
 	int k = i + 1;
@@ -142,6 +142,7 @@ double Diffusion::GetDiffusionI(int& i, int& j, double& var) {
 		return (CompareEast - CompareWest) / p_System.GetDifferenceI() +
 			(CompareNorth - CompareSouth) / p_System.GetDifferenceJ();
 	}
+	return NULL;
 }
 
 double Diffusion::GetDiffusionJ(int& i, int& j, double& var) {

@@ -16,7 +16,7 @@ public:
 	double GetAdvectionI();
 	double GetAdvectionJ();
 	
-	void SetSystem(Container& Container);
+	void SetContainer(Container& Container);
 	void SetInterpolation(Interpolation& Interp);
 };
 

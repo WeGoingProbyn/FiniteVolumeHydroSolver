@@ -34,6 +34,6 @@ double Advection::GetAdvectionJ() {
 	return -(CompareI + CompareJ);
 }
 
-void Advection::SetSystem(Container& Container) { p_System = Container; }
+void Advection::SetContainer(Container& Container) { p_System = Container; }
 
 void Advection::SetInterpolation(Interpolation& Interp) { p_Interp = Interp; }
