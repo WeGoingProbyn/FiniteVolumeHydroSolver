@@ -143,8 +143,10 @@
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Diffusion.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="Interpolation.cpp" />
     <ClCompile Include="LinearSolver.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Point.cpp" />
     <ClCompile Include="SystemVariables.cpp" />
   </ItemGroup>
@@ -153,7 +155,9 @@
     <ClInclude Include="Container.h" />
     <ClInclude Include="Diffusion.h" />
     <ClInclude Include="Field.h" />
+    <ClInclude Include="Interpolation.h" />
     <ClInclude Include="LinearSolver.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="SystemVariables.h" />
     <ClInclude Include="Util.h" />

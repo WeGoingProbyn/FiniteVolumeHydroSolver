@@ -3,11 +3,11 @@
 
 int main() {
 	Container tmp = Container();
-	int ni = 10;
+	int ni = 3;
 	double nx = 1;
 	double Re = 100;
 	double Cfl = 0.5;
-	double MaxTime = (60); //Seconds
+	double MaxTime = (60); // Seconds
 	double Tolerance = 1e-8;
 	vec4 Velocities = vec4(1., 0., 0., 0.);
 
@@ -21,7 +21,7 @@ int main() {
 
 	tmp.BuildFields(ni, ni);
 
-	tmp.GetMomentumFieldI()->FieldToConsoleOutput();
+	tmp.GetDynamicViscosityField()->FieldToConsoleOutput();
 
 	tmp.SetBoxScale();
 	tmp.SetTrueTime();

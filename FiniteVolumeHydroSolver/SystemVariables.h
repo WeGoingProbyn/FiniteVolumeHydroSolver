@@ -7,7 +7,7 @@
 
 class SystemVariables {
 private:
-	vec4 p_DirchletVelocity;
+	vec4 p_VelocityBoundariesI, p_VelocityBoundariesJ;
 	double p_nx, p_ny, p_Re, p_Cfl, p_MaxTime, p_Tolerance;
 public:
 	SystemVariables();
@@ -18,7 +18,8 @@ public:
 	double GetCfl();
 	double GetMaxTime();
 	double GetTolerance();
-	vec4 GetDirchletVelocity();
+	vec4 GetVelocityBoundariesI();
+	vec4 GetVelocityBoundariesJ();
 	
 	void SetSizeX(double& nx);
 	void SetSizeY(double& ny);
@@ -26,7 +27,8 @@ public:
 	void SetCfl(double& Cfl);
 	void SetMaxTime(double& MaxTime);
 	void SetTolerance(double& Tolerance);
-	void SetDirchletVelocity(vec4& DirchletVelocity);
+	void SetVelocityBoundariesI(vec4& VelocityBoundariesI);
+	void SetVelocityBoundariesJ(vec4& VelocityBoundariesJ);
 };
 
 #endif

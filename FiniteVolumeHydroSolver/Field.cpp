@@ -35,9 +35,7 @@ Point* Field::GetPoint(int& i, int& j) {
 	return &arr[index];
 }
 
-Point* Field::GetPoint(int& index) {
-	return &arr[index];
-}
+Point* Field::GetPoint(int& index) { return &arr[index]; }
 
 void Field::FieldToConsoleOutput() {
 	for (int j = 0; j < this->GetDimensionSizeJ(); j++) {
