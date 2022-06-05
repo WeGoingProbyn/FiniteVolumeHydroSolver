@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Field.h"
+#include "Container.h"
 #include "Util.h"
 
 #ifndef INTERPOLATION_H
@@ -9,15 +9,15 @@
 
 class Interpolation {
 private:
+	Container p_System;
 	vec6 p_uInterp, p_vInterp;
-	Field p_MomentumI, p_MomentumJ;
 public:
 	Interpolation();
 
 	vec6 GetUInterpolation();
 	vec6 GetVInterpolation();
 
-	void SetMomentumFields(Field& MomentumI, Field& MomentumJ);
+	void SetContainer(Container& Container);
 
 	void SetUInterpolationEast(int& i, int& j);
 	void SetUInterpolationWest(int& i, int& j);

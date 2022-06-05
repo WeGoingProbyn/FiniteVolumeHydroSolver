@@ -45,6 +45,8 @@ public:
 	SystemVariables* GetSysVars();
 
 	void BuildFields(int& ni, int& nj);
+	void SetBoundariesI();
+	void SetBoundariesJ();
 
 	double GetDt();
 	int GetSimSteps();

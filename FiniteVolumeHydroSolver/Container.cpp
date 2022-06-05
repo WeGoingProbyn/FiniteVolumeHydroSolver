@@ -88,6 +88,24 @@ void Container::BuildFields(int& ni, int& nj) {
 	}											   // outisde this function
 }												   // for compressible flow 
 
+void Container::SetBoundariesI() {
+	int i = 0;
+	vec4 var = this->GetSysVars()->GetVelocityBoundariesI();
+	for (int j = 0; j < this->GetMomentumFieldI()->GetDimensionSizeJ(); j++) {
+		this->GetMomentumFieldI()->GetPoint(i, j)->SetVar(var.e);
+		this->GetInterimMomentumFieldI()->GetPoint(i, j)->SetVar(var.e);
+	}
+}
+
+void Container::SetBoundariesJ() {
+	int j = 0;
+	vec4 var = this->GetSysVars()->GetVelocityBoundariesJ();
+	for (int i = 0; i < this->GetMomentumFieldJ()->GetDimensionSizeI(); i++) {
+		this->GetMomentumFieldJ()->GetPoint(i, j)->SetVar(var.n);
+		this->GetInterimMomentumFieldJ()->GetPoint(i, j)->SetVar(var.n);
+	}
+}
+
 Field* Container::GetEnergyField() { return &Energy; }
 
 Field* Container::GetDensityField() { return &Density; }

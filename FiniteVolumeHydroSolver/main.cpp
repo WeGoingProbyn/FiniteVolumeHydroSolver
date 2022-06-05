@@ -12,7 +12,7 @@ int main() {
 	double Cfl = 0.5;
 	double MaxTime = (60); // Seconds
 	double Tolerance = 1e-8;
-	vec4 VelocitiesI = vec4(1., 1., 0., 0.);
+	vec4 VelocitiesI = vec4(0., 0., 0., 0.);
 	vec4 VelocitiesJ = vec4(0., 0., 0., 0.);
 
 	tmp.GetSysVars()->SetSizeX(nx);
@@ -25,6 +25,11 @@ int main() {
 	tmp.GetSysVars()->SetVelocityBoundariesJ(VelocitiesJ);
 
 	tmp.BuildFields(ni, ni);
+	tmp.SetBoundariesI();
+	tmp.SetBoundariesJ();
+
+	tmp.GetMomentumFieldI()->FieldToConsoleOutput();
+	tmp.GetMomentumFieldJ()->FieldToConsoleOutput();
 
 	tmp.SetBoxScale();
 	tmp.SetTrueTime();
@@ -32,8 +37,10 @@ int main() {
 	tmp.SetSimSteps();
 
 	physics.SetContainer(tmp);
-	physics.ComputeInterimMomentum();
+	physics.ComputeInterimMomentumI();
+	physics.ComputeInterimMomentumJ();
 
+	tmp.GetInterimMomentumFieldI()->FieldToConsoleOutput();
 	tmp.GetInterimMomentumFieldJ()->FieldToConsoleOutput();
 
 	tmp.DestroyPoints();

@@ -26,7 +26,8 @@ public:
 	void SetDiffusion(Diffusion& Diffusion);
 	void SetInterpolation(Interpolation& Interp);
 
-	void ComputeInterimMomentum();
+	void ComputeInterimMomentumI();
+	void ComputeInterimMomentumJ();
 };
 
 #endif
