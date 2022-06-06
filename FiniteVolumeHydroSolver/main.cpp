@@ -1,10 +1,12 @@
 #include <iostream>
 #include "Container.h"
 #include "Physics.h"
+#include "LinearSolver.h"
 
 int main() {
 	Container tmp = Container();
 	Physics physics = Physics();
+	LinearSolver solver = LinearSolver();
 
 	int ni = 3;
 	double nx = 1;
@@ -12,7 +14,7 @@ int main() {
 	double Cfl = 0.5;
 	double MaxTime = (60); // Seconds
 	double Tolerance = 1e-8;
-	vec4 VelocitiesI = vec4(0., 0., 0., 0.);
+	vec4 VelocitiesI = vec4(0., 0., 1., 0.);
 	vec4 VelocitiesJ = vec4(0., 0., 0., 0.);
 
 	tmp.GetSysVars()->SetSizeX(nx);
@@ -42,6 +44,13 @@ int main() {
 
 	tmp.GetInterimMomentumFieldI()->FieldToConsoleOutput();
 	tmp.GetInterimMomentumFieldJ()->FieldToConsoleOutput();
+
+	solver.SetContainer(tmp);
+	solver.BuildMatrixA();
+	solver.BuildVectorB();
+
+	solver.GetMatrixA()->FieldToConsoleOutput();
+	solver.GetVectorB()->FieldToConsoleOutput();
 
 	tmp.DestroyPoints();
 }

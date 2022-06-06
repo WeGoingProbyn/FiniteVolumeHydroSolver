@@ -140,10 +140,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Advection.cpp" />
+    <ClCompile Include="BiCGSTAB.cpp" />
     <ClCompile Include="Container.cpp" />
     <ClCompile Include="Diffusion.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="Interpolation.cpp" />
+    <ClCompile Include="LinearBuilder.cpp" />
+    <ClCompile Include="LinearField.cpp" />
     <ClCompile Include="LinearSolver.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physics.cpp" />
@@ -152,10 +155,13 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Advection.h" />
+    <ClInclude Include="BiCGSTAB.h" />
     <ClInclude Include="Container.h" />
     <ClInclude Include="Diffusion.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="Interpolation.h" />
+    <ClInclude Include="LinearBuilder.h" />
+    <ClInclude Include="LinearField.h" />
     <ClInclude Include="LinearSolver.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Point.h" />

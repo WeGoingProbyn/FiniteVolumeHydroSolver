@@ -22,9 +22,8 @@ void Field::SetPoint(Point& instance, int& index) { arr[index] = instance; }
 
 void Field::BuildField(int& index, double& var) {
 	arr[index] = Point(var);
-	int i, j;
-	i = index % p_ni;
-	j = index / p_ni;
+	int i = index % p_ni;
+	int j = index / p_ni;
 	arr[index].SetIndexI(i);
 	arr[index].SetIndexJ(j);
 }
