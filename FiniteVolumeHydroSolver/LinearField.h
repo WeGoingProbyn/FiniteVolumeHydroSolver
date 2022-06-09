@@ -6,8 +6,6 @@
 #define LINEARFIELD_H
 
 class LinearField : public Field {
-private:
-	const static int MaxItems = 4096*4096;
 public:
 	void BuildMainDiagonal(int& index, double& var);
 	

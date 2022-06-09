@@ -13,16 +13,34 @@ private:
 	LinearBuilder p_Builder;
 	//BiCGSTAB p_BiCGSTAB;
 	Container p_System;
-	LinearField p_MatrixA;
 	Field p_VectorB;
+	LinearField p_ElementA, p_ElementAip, p_ElementAim, p_ElementAjp, p_ElementAjm;
 public:
 	LinearSolver();
 
-	LinearField* GetMatrixA();
+	void DestroyPoints();
+
+	void CombineVectorandElemetsA(Field& Vector);
+	double FindDotProduct(Field& VectorA, Field& VectorB);
+
+	LinearField* GetElementA();
+	LinearField* GetElementAip();
+	LinearField* GetElementAim();
+	LinearField* GetElementAjp();
+	LinearField* GetElementAjm();
 	Field* GetVectorB();
+	Field* GetCombined();
+	Field* GetGuess();
 
 	void SetContainer(Container& Container);
-	void BuildMatrixA();
+	void SetFieldDimensions();
+
+	void BuildElementA();
+	void BuildElementAip();
+	void BuildElementAim();
+	void BuildElementAjp();
+	void BuildElementAjm();
+
 	void BuildVectorB();
 };
 #endif

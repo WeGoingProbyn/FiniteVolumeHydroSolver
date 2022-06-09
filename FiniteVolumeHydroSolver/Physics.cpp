@@ -28,14 +28,18 @@ void Physics::ComputeInterimMomentumI() {
 	double Diffusion;
 	vec4 BoundaryI = p_System.GetSysVars()->GetVelocityBoundariesI();
 
-	for (int j = 0; j < p_System.GetMomentumFieldI()->GetDimensionSizeJ(); j++) {
-		for (int i = 1; i < p_System.GetMomentumFieldI()->GetDimensionSizeI(); i++) {
+	for (int j = 1; j < p_System.GetMomentumFieldI()->GetDimensionSizeJ() - 1; j++) {
+		for (int i = 1; i < p_System.GetMomentumFieldI()->GetDimensionSizeI() - 1; i++) {
 			p_Interp.SetUInterpolationEast(i, j);
 			p_Interp.SetUInterpolationWest(i, j);
 			p_Interp.SetUInterpolationCrossPlus(i, j);
 			p_Interp.SetUInterpolationCrossMinus(i, j);
 
-			if (j == 0) {
+			p_Interp.SetUInterpolationNorth(i, j);
+			p_Interp.SetUInterpolationSouth(i, j);
+			Diffusion = p_Diffusion.GetDiffusionI(i, j);
+
+			/*if (j == 0) {
 				Diffusion = p_Diffusion.GetDiffusionI(i, j, BoundaryI.n);
 				p_Interp.SetUInterpolationNorth(i, j, BoundaryI.n);
 				p_Interp.SetUInterpolationSouth(i, j);
@@ -49,7 +53,7 @@ void Physics::ComputeInterimMomentumI() {
 				p_Interp.SetUInterpolationNorth(i, j);
 				p_Interp.SetUInterpolationSouth(i, j);
 				Diffusion = p_Diffusion.GetDiffusionI(i, j);
-			}
+			}*/
 
 			p_Advection.SetInterpolation(p_Interp);
 			double var = p_Advection.GetAdvectionI() - Diffusion;
@@ -62,14 +66,18 @@ void Physics::ComputeInterimMomentumJ() {
 	double Diffusion;
 	vec4 BoundaryJ = p_System.GetSysVars()->GetVelocityBoundariesJ();
 
-	for (int j = 1; j < p_System.GetMomentumFieldJ()->GetDimensionSizeJ(); j++) {
-		for (int i = 0; i < p_System.GetMomentumFieldJ()->GetDimensionSizeI(); i++) {
+	for (int j = 1; j < p_System.GetMomentumFieldJ()->GetDimensionSizeJ() - 1; j++) {
+		for (int i = 1; i < p_System.GetMomentumFieldJ()->GetDimensionSizeI() - 1; i++) {
 			p_Interp.SetVInterpolationNorth(i, j);
 			p_Interp.SetVInterpolationSouth(i, j);
 			p_Interp.SetVInterpolationCrossPlus(i, j);
 			p_Interp.SetVInterpolationCrossMinus(i, j);
 
-			if (i == 0) {
+			p_Interp.SetVInterpolationEast(i, j);
+			p_Interp.SetVInterpolationWest(i, j);
+			Diffusion = p_Diffusion.GetDiffusionJ(i, j);
+
+			/*if (i == 0) {
 				Diffusion = p_Diffusion.GetDiffusionJ(i, j, BoundaryJ.e);
 				p_Interp.SetVInterpolationEast(i, j, BoundaryJ.e);
 				p_Interp.SetVInterpolationWest(i, j);
@@ -83,7 +91,7 @@ void Physics::ComputeInterimMomentumJ() {
 				p_Interp.SetVInterpolationEast(i, j);
 				p_Interp.SetVInterpolationWest(i, j);
 				Diffusion = p_Diffusion.GetDiffusionJ(i, j);
-			}
+			}*/
 
 			p_Advection.SetInterpolation(p_Interp);
 			double var = p_Advection.GetAdvectionJ() - Diffusion;

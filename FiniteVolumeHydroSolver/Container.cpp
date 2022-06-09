@@ -43,20 +43,22 @@ void Container::BuildFields(int& ni, int& nj) {
 	Pressure.SetDimensionSizeI(ni);
 	Pressure.SetDimensionSizeJ(nj);
 
-	int tmpI = ni + 1;
-	int tmpJ = nj + 1;
+	int tmpI1 = ni + 1;
+	int tmpJ1 = nj + 1;
+	int tmpI2 = ni + 2;
+	int tmpJ2 = ni + 2;
 
-	MomentumI.SetDimensionSizeI(tmpI);
-	MomentumI.SetDimensionSizeJ(nj);
+	MomentumI.SetDimensionSizeI(tmpI2);
+	MomentumI.SetDimensionSizeJ(tmpJ1);
 
-	MomentumJ.SetDimensionSizeI(ni);
-	MomentumJ.SetDimensionSizeJ(tmpJ);
+	MomentumJ.SetDimensionSizeI(tmpI1);
+	MomentumJ.SetDimensionSizeJ(tmpJ2);
 
-	InterimMomentumI.SetDimensionSizeI(tmpI);
-	InterimMomentumI.SetDimensionSizeJ(nj);
+	InterimMomentumI.SetDimensionSizeI(tmpI2);
+	InterimMomentumI.SetDimensionSizeJ(tmpJ1);
 
-	InterimMomentumJ.SetDimensionSizeI(ni);
-	InterimMomentumJ.SetDimensionSizeJ(tmpJ);
+	InterimMomentumJ.SetDimensionSizeI(tmpI1);
+	InterimMomentumJ.SetDimensionSizeJ(tmpJ2);
 
 	DynamicViscosity.SetDimensionSizeI(ni);
 	DynamicViscosity.SetDimensionSizeJ(nj);
@@ -90,19 +92,47 @@ void Container::BuildFields(int& ni, int& nj) {
 
 void Container::SetBoundariesI() {
 	int i = 0;
+	int j = 0;
+	int endI = this->GetMomentumFieldI()->GetDimensionSizeI() - 1;
+	int endJ = this->GetMomentumFieldI()->GetDimensionSizeJ() - 1;
 	vec4 var = this->GetSysVars()->GetVelocityBoundariesI();
 	for (int j = 0; j < this->GetMomentumFieldI()->GetDimensionSizeJ(); j++) {
 		this->GetMomentumFieldI()->GetPoint(i, j)->SetVar(var.e);
 		this->GetInterimMomentumFieldI()->GetPoint(i, j)->SetVar(var.e);
+
+		this->GetMomentumFieldI()->GetPoint(endI, j)->SetVar(var.w);
+		this->GetInterimMomentumFieldI()->GetPoint(endI, j)->SetVar(var.w);
+	}
+	j = 0;
+	for (int i = 0; i < this->GetMomentumFieldJ()->GetDimensionSizeI(); i++) {
+		this->GetMomentumFieldI()->GetPoint(i, j)->SetVar(var.n);
+		this->GetInterimMomentumFieldI()->GetPoint(i, j)->SetVar(var.n);
+
+		this->GetMomentumFieldI()->GetPoint(i, endJ)->SetVar(var.s);
+		this->GetInterimMomentumFieldI()->GetPoint(i, endJ)->SetVar(var.s);
 	}
 }
 
 void Container::SetBoundariesJ() {
 	int j = 0;
+	int i = 0;
+	int endJ = this->GetMomentumFieldJ()->GetDimensionSizeJ() - 1;
+	int endI = this->GetMomentumFieldJ()->GetDimensionSizeI() - 1;
 	vec4 var = this->GetSysVars()->GetVelocityBoundariesJ();
 	for (int i = 0; i < this->GetMomentumFieldJ()->GetDimensionSizeI(); i++) {
 		this->GetMomentumFieldJ()->GetPoint(i, j)->SetVar(var.n);
 		this->GetInterimMomentumFieldJ()->GetPoint(i, j)->SetVar(var.n);
+
+		this->GetMomentumFieldJ()->GetPoint(i, endJ)->SetVar(var.s);
+		this->GetInterimMomentumFieldJ()->GetPoint(i, endJ)->SetVar(var.s);
+	}
+	i = 0;
+	for (int j = 0; j < this->GetMomentumFieldI()->GetDimensionSizeJ(); j++) {
+		this->GetMomentumFieldJ()->GetPoint(i, j)->SetVar(var.e);
+		this->GetInterimMomentumFieldJ()->GetPoint(i, j)->SetVar(var.e);
+
+		this->GetMomentumFieldJ()->GetPoint(endI, j)->SetVar(var.w);
+		this->GetInterimMomentumFieldJ()->GetPoint(endI, j)->SetVar(var.w);
 	}
 }
 

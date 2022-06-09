@@ -10,7 +10,7 @@ int main() {
 
 	int ni = 3;
 	double nx = 1;
-	double Re = 100;
+	double Re = 1000;
 	double Cfl = 0.5;
 	double MaxTime = (60); // Seconds
 	double Tolerance = 1e-8;
@@ -39,6 +39,7 @@ int main() {
 	tmp.SetSimSteps();
 
 	physics.SetContainer(tmp);
+
 	physics.ComputeInterimMomentumI();
 	physics.ComputeInterimMomentumJ();
 
@@ -46,11 +47,29 @@ int main() {
 	tmp.GetInterimMomentumFieldJ()->FieldToConsoleOutput();
 
 	solver.SetContainer(tmp);
-	solver.BuildMatrixA();
-	solver.BuildVectorB();
+	solver.SetFieldDimensions();
 
-	solver.GetMatrixA()->FieldToConsoleOutput();
+	solver.BuildVectorB();
 	solver.GetVectorB()->FieldToConsoleOutput();
 
+	solver.BuildElementA();
+	solver.GetElementA()->FieldToConsoleOutput();
+
+	solver.BuildElementAip();
+	solver.GetElementAip()->FieldToConsoleOutput();
+
+	solver.BuildElementAim();
+	solver.GetElementAim()->FieldToConsoleOutput();
+
+	solver.BuildElementAjp();
+	solver.GetElementAjp()->FieldToConsoleOutput();
+
+	solver.BuildElementAjm();
+	solver.GetElementAjm()->FieldToConsoleOutput();
+
+	solver.CombineVectorBandElemetsA();
+	solver.GetCombined()->FieldToConsoleOutput();
+
+	solver.DestroyPoints();
 	tmp.DestroyPoints();
 }
