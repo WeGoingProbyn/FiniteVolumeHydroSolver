@@ -31,7 +31,7 @@ void LinearField::BuildOffDiagonalMinusI(int& index, double& var) {
 
 void LinearField::BuildOffDiagonalPlusJ(int& index, double& var) {
 	int reduced = (int)std::pow(this->GetDimensionSizeI(), 0.5);
-	int i = (index % this->GetDimensionSizeI()) + reduced;
+	int i = (index % this->GetDimensionSizeI());
 	int j = i - reduced;
 	Point instance = Point(var);
 	instance.SetIndexI(i);
@@ -41,7 +41,7 @@ void LinearField::BuildOffDiagonalPlusJ(int& index, double& var) {
 }
 
 void LinearField::BuildOffDiagonalMinusJ(int& index, double& var) {
-	int reduced = std::pow(this->GetDimensionSizeI(), 0.5);
+	int reduced = (int)std::pow(this->GetDimensionSizeI(), 0.5);
 	int i = index % this->GetDimensionSizeI();
 	int j = i + reduced;
 	Point instance = Point(var);

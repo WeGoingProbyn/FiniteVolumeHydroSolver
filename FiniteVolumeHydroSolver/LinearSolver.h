@@ -1,7 +1,6 @@
 #pragma once
 
-#include "LinearBuilder.h"
-#include "BiCGSTAB.h"
+//#include "BiCGSTAB.h"
 #include "Field.h"
 #include "LinearField.h"
 
@@ -10,18 +9,11 @@
 
 class LinearSolver {
 private:
-	LinearBuilder p_Builder;
-	//BiCGSTAB p_BiCGSTAB;
-	Container p_System;
 	Field p_VectorB;
 	LinearField p_ElementA, p_ElementAip, p_ElementAim, p_ElementAjp, p_ElementAjm;
 public:
 	LinearSolver();
-
-	void DestroyPoints();
-
-	void CombineVectorandElemetsA(Field& Vector);
-	double FindDotProduct(Field& VectorA, Field& VectorB);
+	void DestroyInternalPoints();
 
 	LinearField* GetElementA();
 	LinearField* GetElementAip();
@@ -29,18 +21,7 @@ public:
 	LinearField* GetElementAjp();
 	LinearField* GetElementAjm();
 	Field* GetVectorB();
-	Field* GetCombined();
-	Field* GetGuess();
 
-	void SetContainer(Container& Container);
-	void SetFieldDimensions();
-
-	void BuildElementA();
-	void BuildElementAip();
-	void BuildElementAim();
-	void BuildElementAjp();
-	void BuildElementAjm();
-
-	void BuildVectorB();
+	void SetInternalFieldDimensions(int& Ni);
 };
 #endif
